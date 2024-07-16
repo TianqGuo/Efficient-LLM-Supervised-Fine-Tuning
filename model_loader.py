@@ -9,9 +9,13 @@ class ModelLoader:
         # Load the model
         self.model = AutoModelForCausalLM.from_pretrained(model_name)
 
+        self.model = self.model.to('cuda')
+
     def generate_text(self, input_text):
         # Tokenize the input text
         input_ids = self.tokenizer(input_text, return_tensors='pt').input_ids
+
+        input_ids = input_ids.to('cuda')
 
         # Generate text using the model
         output = self.model.generate(input_ids, max_length=50)
@@ -23,5 +27,6 @@ class ModelLoader:
 
 
 if __name__ == "__main__":
-    cur_model = ModelLoader()
+    cur_model = ModelLoader("facebook/opt-6.7b")
+    # cur_model = ModelLoader()
     print(cur_model.generate_text("Once upon a time"))
