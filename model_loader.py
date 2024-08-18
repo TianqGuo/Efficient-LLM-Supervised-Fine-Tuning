@@ -27,6 +27,6 @@ class ModelLoader:
 
 
 if __name__ == "__main__":
-    cur_model = ModelLoader("facebook/opt-6.7b")
-    # cur_model = ModelLoader()
+    # cur_model = ModelLoader("facebook/opt-6.7b")
+    cur_model = ModelLoader()
     print(cur_model.generate_text("Once upon a time"))
